@@ -8,7 +8,7 @@ class Torus : public PrimitiveAbs
 {
 
 public:
-	Torus(const Point3D& pt, float R, float r, float theta, float phi);
+	Torus();
 	virtual ~Torus();
 	virtual Torus* clone() const;
 
@@ -19,6 +19,6 @@ public:
 private:
 	virtual std::ostream& toStream(std::ostream& o) const;
 
-	float m_dimensions[4];
+	
 };
 #endif // !defined(EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB2__INCLUDED_)
