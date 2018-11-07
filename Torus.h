@@ -1,6 +1,11 @@
-
-#if !defined(EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB2__INCLUDED_)
-#define EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB2__INCLUDED_
+///////////////////////////////////////////////////////////
+//  Torus.h
+//  Implementation of the Class Torus
+//  Created on:      07-nov.-2018 8:16:62
+//  Original author: 1899088 1824366
+///////////////////////////////////////////////////////////
+#if !defined(EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB3__INCLUDED_)
+#define EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB3__INCLUDED_
 
 #include "PrimitiveAbs.h"
 
@@ -8,8 +13,8 @@ class Torus : public PrimitiveAbs
 {
 
 public:
-	Torus();
-	virtual ~Torus(const Point3D& pt, f float R, float r, float theta);
+	Torus(const Point3D& pt, float rTube, float rCercle);
+	virtual ~Torus();
 	virtual Torus* clone() const;
 
 	virtual std::size_t getNbParameters() const;
@@ -18,7 +23,7 @@ public:
 
 private:
 	virtual std::ostream& toStream(std::ostream& o) const;
-	float m_dimensions[3];
+	float m_dimensions[2];
 	
 };
-#endif // !defined(EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB2__INCLUDED_)
+#endif // !defined(EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB3__INCLUDED_)

@@ -14,10 +14,12 @@ Objet3DComposite::Objet3DComposite(){
 
 Objet3DComposite::Objet3DComposite(const Objet3DComposite & mdd)
 {
+	// A Completer...
+	// Fait
+	outputIndent = mdd.outputIndent;
 	for (int i = 0; i < mdd.m_objetContainer.size(); i++) {
 		addChild(*mdd.m_objetContainer[i]);
 	}
-	// A Completer...
 }
 
 Objet3DComposite::~Objet3DComposite(){
@@ -25,46 +27,54 @@ Objet3DComposite::~Objet3DComposite(){
 
 Objet3DComposite * Objet3DComposite::clone() const
 {
-	return new Objet3DComposite(*this);
+	Objet3DComposite* pointeur = new Objet3DComposite();
+	for (auto it = cbegin(); it != cend(); ++it) {
+		pointeur->m_objetContainer.push_back(Objet3DPtr(it->clone()));
+	}
+	return pointeur;
 }
 
 void Objet3DComposite::addChild(const Objet3DAbs& obj3d)
 {
-
-	Objet3DAbs* ptr = obj3d.clone();
-	m_objetContainer.push_back(ptr);
-//à demander
 	// A Completer...
+	// Fait
+
+	m_objetContainer.push_back(Objet3DPtr(obj3d.clone()));
 }
 
 Objet3DIterator Objet3DComposite::begin(){
 
 	// A Completer...
-	return Objet3DBaseIterator();
+	// Fait
+	return m_objetContainer.begin();
 }
 
 Objet3DIterator_const Objet3DComposite::cbegin() const {
 
 	// A Completer...
-	return Objet3DBaseIterator();
+	// Fait
+	return m_objetContainer.cbegin();
 }
 
 Objet3DIterator_const Objet3DComposite::cend() const {
 
 	// A Completer...
-	return Objet3DBaseIterator();
+	// Fait
+	return m_objetContainer.cend();
 }
 
 Objet3DIterator Objet3DComposite::end(){
 
 	// A Completer...
-	return Objet3DBaseIterator();
+	// Fait
+	return m_objetContainer.end();
 }
 
 Point3D Objet3DComposite::getCenter() const {
 	
 	// A Completer...
-	return Point3D();
+	// Fait
+	return computeCenter();
 }
 
 size_t Objet3DComposite::getNbParameters() const 
@@ -79,17 +89,28 @@ PrimitiveParams Objet3DComposite::getParameters() const {
 
 void Objet3DComposite::removeChild(Objet3DIterator_const obj3dIt)
 {
-	m_objetContainer.erase(obj3dIt);
 	// A Completer...
+	// Fait
+	m_objetContainer.erase(obj3dIt);
 }
 
 void Objet3DComposite::moveCenter(const Point3D & delta)
 {
 	// A Completer...
+	// Fait
+	for (Objet3DPtr &objet3D : m_objetContainer)
+	{
+		objet3D->moveCenter(delta);
+	}
 }
 
 void Objet3DComposite::setCenter(const Point3D& center){
 	// A Completer...
+	// Fait
+	for (Objet3DPtr &objet3D : m_objetContainer)
+	{
+		objet3D->setCenter(center);
+	}
 }
 
 void Objet3DComposite::setParameter(size_t pIndex, float pValue){
@@ -102,8 +123,17 @@ Point3D Objet3DComposite::computeCenter() const
 	// S'il n'y a pas d'enfant, initialise a (0,0,0)
 
 	// A Completer...
-	Point3D m_center;
-	return m_center;
+	// Fait
+
+	Point3D center;
+	if (m_objetContainer.size() > 0)
+	{
+		for (auto it = cbegin(); it != cend(); ++it) {
+			center += it->getCenter();
+		}
+		center /= m_objetContainer.size();
+	}
+	return center;
 }
 
 // Variable statique permettant de stocker le niveau d'indentation

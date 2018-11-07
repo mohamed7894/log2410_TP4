@@ -13,6 +13,7 @@ Sphere::Sphere(const Point3D& pt, float r)
 {
 	if (r < 0.0)
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
+	// Fait
 	m_radius = r;
 }
 
@@ -21,21 +22,25 @@ Sphere::~Sphere(){
 
 Sphere * Sphere::clone() const
 {
-	Sphere* nouvelleShpere = new Sphere(getCenter(), m_radius);
-	return nouvelleShpere;
+	// A Completer...
+	// Fait
+	return new Sphere(m_center, m_radius);
 }
 
 size_t Sphere::getNbParameters() const {
 
 	// A Completer...
-	return 0;
+	// Fait
+	return 1;
 }
 
 PrimitiveParams Sphere::getParameters() const {
 
-	PrimitiveParams primitiveParams = PrimitiveParams();
-	primitiveParams.push_back(m_radius);
-	return primitiveParams;
+	// A Completer...
+	//Fait 
+	PrimitiveParams vecteurParams = PrimitiveParams();
+	vecteurParams.push_back(m_radius);
+	return vecteurParams;
 }
 
 void Sphere::setParameter(size_t pIndex, float pValue){
@@ -46,6 +51,8 @@ void Sphere::setParameter(size_t pIndex, float pValue){
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
 
 	// A Completer...
+	// Fait
+	m_radius = pValue;
 }
 
 std::ostream & Sphere::toStream(std::ostream & o) const
