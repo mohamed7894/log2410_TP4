@@ -13,50 +13,41 @@ Cube::Cube(const Point3D& pt, float ln, float lg, float ht)
 {
 	if (ln < 0.0 || lg < 0.0 || ht < 0.0)
 		throw std::range_error("Invalid dimension value for cube. Must be larger than 0");
-	else {
-		//èa demander
-
-		m_dimensions[0] = ln;
-
-		m_dimensions[1] = lg;
-
-		m_dimensions[2] = ht;
-
-	}
 	// A Completer...
+	// Fait
+	m_dimensions[0] = ln;
+	m_dimensions[1] = lg;
+	m_dimensions[2] = ht;
 }
 
 Cube::~Cube(){
 }
 
-Cube * Cube::clone() const
+Cube* Cube::clone() const
 {
-	// a demander
-	Cube* clonage = new Cube(m_center, m_dimensions[0],m_dimensions[1],m_dimensions[2]);
-
-	return clonage;
+	// A Completer...
+	// Fait
+	return new Cube(m_center, m_dimensions[0], m_dimensions[1], m_dimensions[2]);
 }
 
 size_t Cube::getNbParameters() const {
 
 	// A Completer...
-	return sizeof(m_dimensions)/ sizeof(*m_dimensions);
+	// Fait
+	return 3;
 }
 
 PrimitiveParams Cube::getParameters() const 
 {
-	PrimitiveParams primitiveParams;
-
-
-	primitiveParams.push_back(m_dimensions[0]);
-
-	primitiveParams.push_back(m_dimensions[1]);
-
-	primitiveParams.push_back(m_dimensions[2]);
-
-	return primitiveParams;
 	// A Completer...
-	
+	// Fait
+	PrimitiveParams vecteurParams;
+
+	for (int i = 0; i < 3; i++)
+	{
+		vecteurParams.push_back(m_dimensions[i]);
+	}
+	return vecteurParams;
 }
 
 void Cube::setParameter(size_t pIndex, float pValue){
@@ -65,11 +56,10 @@ void Cube::setParameter(size_t pIndex, float pValue){
 
 	if(pValue<0.0)
 		throw std::range_error("Invalid dimension value for cube. Must be larger than 0");
-	else {
 
-		m_dimensions[pIndex] = pValue;
-	}
 	// A Completer...
+	// Fait
+	m_dimensions[pIndex] = pValue;
 }
 
 std::ostream & Cube::toStream(std::ostream & o) const
